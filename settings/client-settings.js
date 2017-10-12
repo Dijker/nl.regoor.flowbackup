@@ -1,4 +1,5 @@
-function onHomeyReady() {
+function onHomeyReady(Homey_) {
+	Homey = Homey_
 	Homey.get('bearerToken', (error, bearerToken) => { setBearerToken(bearerToken, false); });
 	Homey.ready();
 };
@@ -67,7 +68,7 @@ $(document).ready(() => {
 					if ((flowIds == null) || (flowIds.length == 0))
 						showErrorMessage(__('copy.noFlowsSelectedError'));
 					else {
-						if (!confirm(__('copy.copyConfirmation').replace('[quantity]', flowIds.length))) return;
+						if (!Homey.confirm(__('copy.copyConfirmation').replace('[quantity]', flowIds.length))) return;
 						flowCopy.copyFlowsTo(flowIds, destinationFolderId, (result) => {
 							if (!result.successful)
 								showErrorMessages(result.errorMessages);
@@ -96,7 +97,7 @@ function setBearerToken(bearerToken, fromInput) {
 		updateInput = true;
 	if (updateInput)
 		$('#textBearerToken').val(bearerToken);
-	
+
 	$('#buttonCopyFlows, #buttonBackupAllFlows, #buttonRestoreFlows').hide();
 	$('#bearerTokenExplanation').show();
 	if ((bearerToken != null) && (bearerToken.length > 0)) {
@@ -135,7 +136,7 @@ Date.prototype.toCleanString = function() {
 	return dateString.replace('T', '-');
 };
 
-function createGuid() { 
+function createGuid() {
 	var s4 = () => { return (((1+Math.random())*0x10000)|0).toString(16).substring(1); };
 	return (s4() + s4() + "-" + s4() + "-4" + s4().substr(0,3) + "-" + s4() + "-" + s4() + s4() + s4()).toLowerCase();
 };
@@ -151,9 +152,9 @@ function loadPopup(id, selector, zIndex, positionTop, width, height){
 	popupContainer.find('.closePopup').click(() => { popupContainer.closePopup(); });
 	popupContainer.css('z-index', zIndex);
 	popupContainer.css('top', positionTop + 'px');
-	popupContainer.css('width', 'calc('+width+'px - 40px)');
-	popupContainer.css('height', 'calc('+height+'px - 40px)');
-	popupContainer.css('margin', '0 0 0 -'+(width/2)+'px');
+	// popupContainer.css('width', 'calc('+width+'px - 40px)');
+	// popupContainer.css('height', 'calc('+height+'px - 40px)');
+	popupContainer.css('margin', '0 0 0 0px');
 	$('body').append(popupBackground);
 	$('body').append(popupContainer);
 	return popupContainer;

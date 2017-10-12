@@ -6,6 +6,7 @@ Warning: use this app at your own risk. The app is intended as a temporary solut
 
 # Revision history
 
+2017-10-13 - v1.1.0 - Beta for SDK2 and Mobile settings screen by Geurt Dijker.
 2016-11-23 - v1.0.2 - Added copy function + bug fix for large backup files + added compression to backups.
 
 2016-11-23 - v1.0.1 - Added Homey name to backup set & file name.
