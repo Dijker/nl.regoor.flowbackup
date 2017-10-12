@@ -1,6 +1,7 @@
 <!doctype html>
 <html>
     <head>
+    <script type="text/javascript" src="/homey.js" data-origin="settings"></script>
 		<script type="text/javascript" src="/manager/webserver/assets/js/jquery.js"></script>
 		<script type="text/javascript" src="FileSaver.js"></script>
 		<script type="text/javascript" src="jszip.min.js"></script>
@@ -38,11 +39,11 @@
     		</div>
     	</fieldset>
     	<br class="clear" />
-    	
+
     	<button id="buttonCopyFlows" data-i18n="copyFlowsButton"></button>
     	<button id="buttonBackupAllFlows" data-i18n="backupAllFlowsButton"></button>
     	<button id="buttonRestoreFlows" data-i18n="restoreFlowsButton"></button>
-    	
+
     	<div id="restoreContainer">
     		<h2 data-i18n="restore.title"></h2>
     		<fieldset id="backUpInfo">
@@ -56,7 +57,7 @@
     		<button id="cancelRestoreButton" data-i18n="restore.cancelButton"></button>
     		<button id="performRestoreButton" data-i18n="restore.restoreButton"></button>
     	</div>
-    	
+
     	<div id="warningMessages">
     		<p style="font-weight:bold;" data-i18n="warning.longText.line1"></p>
     		<p data-i18n="warning.longText.line2"></p>

@@ -3,7 +3,7 @@ class HomeyRestore {
 		if ((homeyFlows == null) || !homeyFlows.isOk()) return null;
 		this._homeyFlows = homeyFlows;
 	}
-	
+
 	restoreFlows(flowsToRestore, callback) {
 		if ((flowsToRestore == null) || (flowsToRestore.toCreate == null) || (flowsToRestore.toOverwrite == null))
 			callback({successful:false, errorMessages:[__('restore.noFlowsToRestoreError')]});
@@ -19,8 +19,8 @@ class HomeyRestore {
 				confirmationMessage += __('restore.confirmRestoreOverwrite').replace('[quantity]', flowsToRestore.toOverwrite.length).replace('[flows]', flowsToRestore.toOverwrite.length > 1 ? __('restore.confirmRestoreFlows') : __('restore.confirmRestoreFlow'));
 			}
 			confirmationMessage += __('restore.confirmRestorePart2');
-			if (!confirm(confirmationMessage)) return;
-			
+			if (!Homey.confirm(confirmationMessage)) return;
+
 			if (flowsToRestore.toCreate.length > 0) {
 				this._createFlows(flowsToRestore.toCreate, (result) => {
 					if (!result.successful)
@@ -29,7 +29,7 @@ class HomeyRestore {
 						this._overwriteFlows(flowsToRestore.toCreate.concat(flowsToRestore.toOverwrite), (result) => { callback(result); });
 				});
 			} else
-				_this._overwriteFlows(flowsToRestore.toOverwrite, (result) => { callback(result); });
+				this._overwriteFlows(flowsToRestore.toOverwrite, (result) => { callback(result); });
 		}
 	}
 
@@ -66,7 +66,7 @@ class HomeyRestore {
 				folder: ((flowToOverwrite.folderId != null) && (flowToOverwrite.folderId.length > 0)) ? flowToOverwrite.folderId : false,
 				order: flowToOverwrite.backedUpFlow.order
 			};
-			
+
 			this._sendDataToHomey('PUT', '/api/manager/flow/flow/' + flowToOverwrite.flowId, flow, (err, result) => {
 				nrOfFlowsLeft--;
 				if (err || !result || !result.result)

@@ -36,13 +36,13 @@ class FlowCopy {
 	addFlowList(container, selectedFolderId) {
 		var list = container.find('.flowList');
 		list.remove();
-		
+
 		list = $('<div/>').addClass('list flowList');
 		var headerRow = $('<div/>').addClass('row head');
 		headerRow.append($('<div/>').addClass('cell').text(' '));
 		headerRow.append($('<div/>').addClass('cell').text('Flow title'));
 		list.append(headerRow);
-		
+
 		$.each(this._homeyFlows._flows, (i, flow) => {
 			if ((flow.folder && (flow.folder == selectedFolderId)) || (!flow.folder && (selectedFolderId == '/'))) {
 				var row = $('<div/>').addClass('row');
@@ -51,7 +51,7 @@ class FlowCopy {
 				list.append(row);
 			}
 		});
-		
+
 		if (list.find('.row:not(.head)').length > 0) {
 			container.append(list);
 			return list;
@@ -62,7 +62,7 @@ class FlowCopy {
 	addDestinationFolderSelector(container, selectedFolderId, callback) {
 		var folderSelectorContainer = container.find('.destinationFolderSelectorContainer');
 		folderSelectorContainer.remove();
-		
+
 		folderSelectorContainer = $('<div/>').addClass('destinationFolderSelectorContainer');
 		folderSelectorContainer.append($('<p/>').html(__('copy.selectDestinationFolder')));
 		container.append(folderSelectorContainer);
@@ -71,7 +71,7 @@ class FlowCopy {
 		folderSelectorContainer.append(selector);
 		selector.append($('<option/>').val('/').text('/'));
 		this.addFoldersToSelector(selector, false, selectedFolderId, 0);
-		
+
 		var button = $('<button/>').addClass('copyButton').html(__('copy.copyButton'));
 		folderSelectorContainer.append(button);
 		button.click(() => { callback(selector.find('option:selected').val()); });
@@ -86,10 +86,10 @@ class FlowCopy {
 	copyFlowsTo(flowIds, destinationFolderId, callback) {
 		var homeyRestore = new HomeyRestore(this._homeyFlows);
 		var flowsToCreate = [];
-		
+
 		if (!destinationFolderId || (destinationFolderId == '/'))
 			destinationFolderId = false;
-		
+
 		$.each(flowIds, (i, flowId) => {
 			var flow = this._homeyFlows.getFlowById(flowId);
 			if (flow != null) {
@@ -102,7 +102,7 @@ class FlowCopy {
 				flowsToCreate.push(flowToCreate);
 			}
 		});
-		
+
 		if (flowsToCreate.length != flowIds.length)
 			callback({successful:false, errorMessages:[__('copy.couldNotFindFlowsError')]});
 		else {
