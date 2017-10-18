@@ -68,14 +68,17 @@ $(document).ready(() => {
 					if ((flowIds == null) || (flowIds.length == 0))
 						showErrorMessage(__('copy.noFlowsSelectedError'));
 					else {
-						if (!Homey.confirm(__('copy.copyConfirmation').replace('[quantity]', flowIds.length))) return;
-						flowCopy.copyFlowsTo(flowIds, destinationFolderId, (result) => {
-							if (!result.successful)
-								showErrorMessages(result.errorMessages);
-							else {
-								popup.closePopup();
-								showErrorMessage(__('copy.copiedMessage'));
-							}
+						//if (!Homey.confirm(__('copy.copyConfirmation').replace('[quantity]', flowIds.length))) return;
+						Homey.confirm( __('copy.copyConfirmation').replace('[quantity]', flowIds.length), 'warning', function( err, yes ){
+					    if( !yes ) return;
+							flowCopy.copyFlowsTo(flowIds, destinationFolderId, (result) => {
+								if (!result.successful)
+									showErrorMessages(result.errorMessages);
+								else {
+									popup.closePopup();
+									showErrorMessage(__('copy.copiedMessage'));
+								}
+							});
 						});
 					}
 				});
