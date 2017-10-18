@@ -19,17 +19,21 @@ class HomeyRestore {
 				confirmationMessage += __('restore.confirmRestoreOverwrite').replace('[quantity]', flowsToRestore.toOverwrite.length).replace('[flows]', flowsToRestore.toOverwrite.length > 1 ? __('restore.confirmRestoreFlows') : __('restore.confirmRestoreFlow'));
 			}
 			confirmationMessage += __('restore.confirmRestorePart2');
-			if (!Homey.confirm(confirmationMessage)) return;
-
-			if (flowsToRestore.toCreate.length > 0) {
-				this._createFlows(flowsToRestore.toCreate, (result) => {
-					if (!result.successful)
-						callback(result);
-					else
-						this._overwriteFlows(flowsToRestore.toCreate.concat(flowsToRestore.toOverwrite), (result) => { callback(result); });
-				});
-			} else
-				this._overwriteFlows(flowsToRestore.toOverwrite, (result) => { callback(result); });
+			//if (!Homey.confirm(confirmationMessage)) return;
+			var _thisParent = this;
+			Homey.confirm( confirmationMessage, 'warning', function( err, yes ){
+		    if( !yes ) return;
+		      // ##
+					if (flowsToRestore.toCreate.length > 0) {
+						_thisParent._createFlows(flowsToRestore.toCreate, (result) => {
+							if (!result.successful)
+								callback(result);
+							else
+								_thisParent._overwriteFlows( flowsToRestore.toCreate.concat(flowsToRestore.toOverwrite), (result) => { callback(result); });
+						});
+					} else
+						_thisParent._overwriteFlows( flowsToRestore.toOverwrite, (result) => { callback(result); });
+			})
 		}
 	}
 

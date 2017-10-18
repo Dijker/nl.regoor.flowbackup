@@ -1,24 +1,38 @@
 {
-    "id": "nl.regoor.flowbackup",
-  	"sdk": 2,
-    "version": "1.1.0",
-    "compatibility": "1.x >=1.5.0",
-    "name": {
-        "nl": "Flow Backups",
-        "en": "Flow Backups"
-    },
-   	"description": {
-        "nl": "Maak backups van je flows, en zet ze terug.",
-        "en": "Make backups of your flows, and restore them."
-    },
-    "category": "tools",
-	"images": {
-		"large": "./assets/images/large.png",
-		"small": "./assets/images/small.png"
-	},
-    "author": {
-        "name": "Serge Regoor",
-        "email": "serge@regoor.nl"
-    },
-    "permissions": []
+   "id":"nl.regoor.flowbackup",
+   "sdk":2,
+   "version":"1.1.1",
+   "compatibility":"1.x >=1.5.0",
+   "name":{
+      "nl":"Flow Backups",
+      "en":"Flow Backups"
+   },
+   "description":{
+      "nl":"Maak backups van je flows, en zet ze terug.",
+      "en":"Make backups of your flows, and restore them."
+   },
+   "category":"tools",
+   "images":{
+      "large":"./assets/images/large.png",
+      "small":"./assets/images/small.png"
+   },
+   "author":{
+      "name":"Geurt Dijker",
+      "email":"Geurt@Dijker.nu"
+   },
+   "contributors":{
+      "developers":[
+         {
+            "name":"Serge Regoor",
+            "email":"serge@regoor.nl"
+         },
+         {
+            "name":"Geurt Dijker",
+            "email":"Geurt@Dijker.nu"
+         }
+      ]
+   },
+   "permissions":[
+
+   ]
 }
