@@ -8,6 +8,7 @@ Warning: use this app at your own risk. The app is intended as a temporary solut
 # Revision history
 
 2018-08-25 - v1.1.2 - Updated Homey Community links
+
 2017-10-18 - v1.1.1 - Updated for SDK2 and Mobile settings screen by Geurt Dijker
 
 2016-11-23 - v1.0.2 - Added copy function + bug fix for large backup files + added compression to backups.
